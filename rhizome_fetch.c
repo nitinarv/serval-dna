@@ -26,7 +26,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "str.h"
 #include "strbuf_helpers.h"
 #include "overlay_address.h"
-#include "dataformats.h"
 #include "socket.h"
 
 /* Represents a queued fetch of a bundle payload, for which the manifest is already known.
