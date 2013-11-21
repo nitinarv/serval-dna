@@ -372,14 +372,17 @@ int transfer_bytes(struct radio_state *radios)
     bcopy(&t->txbuffer[bytes], t->txbuffer, t->txb_len - bytes);
   t->txb_len-=bytes;
   
+  // set the wait time for the next transmission
+  // minimum 20 bit preamble, 1 byte sync, 1 byte length, 2 byte tdm + silence gap
+  next_transmit_time = gettime_ms() + (bytes+8+10)/chars_per_ms;
+  
   if (bytes==0 || --t->tx_count<=0){
     // swap who's turn it is to transmit
     transmitter = receiver;
-    r->tx_count=6;
+    r->tx_count=3;
+    // add Tx->Rx change time
+    next_transmit_time+=300/chars_per_ms;
   }
-  // set the wait time for the next transmission
-  // minimum 20 bit preamble, 1 byte sync, 1 byte length, 2 byte tdm + turn around air-time
-  next_transmit_time = gettime_ms() + (bytes+8+10)/chars_per_ms;
   return bytes;
 }
 
