@@ -704,7 +704,7 @@ start_radio_instance() {
       set debug.throttling on \
       set debug.radio_link on \
       set rhizome.advertise.interval 5000 \
-      set rhizome.rhizome_mdp_block_size 375 \
+      set rhizome.rhizome_mdp_block_size 350 \
       set log.console.level debug \
       set log.console.show_pid on \
       set log.console.show_time on \
@@ -731,7 +731,7 @@ start_fakeradio() {
 doc_SimulatedRadio="MDP Transfer over simulated radio link (~90% packet arrival)"
 setup_SimulatedRadio() {
    setup_common
-   start_fakeradio 10 0.9
+   start_fakeradio 20 0.9
    set_instance +A
    rhizome_add_file file1 5000
    executeOk_servald config \
@@ -754,7 +754,7 @@ teardown_SimulatedRadio() {
 doc_SimulatedRadio2="MDP Transfer over simulated radio link (~50% packet arrival)"
 setup_SimulatedRadio2() {
    setup_common
-   start_fakeradio 10 0.5
+   start_fakeradio 20 0.5
    set_instance +A
    rhizome_add_file file1 5000
    executeOk_servald config \
